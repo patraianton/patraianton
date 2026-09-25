@@ -23,16 +23,6 @@ dictate instead of typing.
 | [local-dictation](https://github.com/patraianton/local-dictation) | Push-to-talk dictation that runs entirely on a Windows PC. faster-whisper transcribes Russian speech full of English product names; a local LM Studio model restores punctuation and terms, and any other change it makes is rolled back. Every setting in `config.toml` carries the measurement that chose it. | Python 3.11+, faster-whisper, LM Studio; 28 test scripts, 24 on faked hardware. In daily use since August 2026. |
 | [subtrack](https://github.com/patraianton/subtrack) | Local Windows dashboard for several Claude Code and Codex subscriptions: what is left of each five-hour and weekly limit, which session burned through a five-hour limit, and what the idle-compaction task will do with each idle session next. | TypeScript on Node.js 24, 300+ tests. In use since June 2026. |
 
-Worth an engineer's first look:
-
-- sheepdog puts a prompt-cache expiry countdown on each card; cards marked as
-  today's focus or starred turn red 10 minutes before the cache expires.
-- local-dictation diffs the model's corrected text against the spoken words and
-  keeps only punctuation, capitalization, glossary terms and verbs turned into
-  commands; everything else rolls back.
-- subtrack ranks sessions by weighted tokens (`src/burn/read.ts`): an output
-  token counts 5, a cache read 0.1.
-
 ## Contact
 
 I am in Riga, Latvia. Write to me on
