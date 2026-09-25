@@ -2,7 +2,7 @@
 
 I have spent nine years in B2B SaaS growth: go-to-market, SEO, content, paid ads,
 lifecycle marketing and product analytics. Over the past year I added AI agents
-to those same channels, so a channel can grow without hiring more people for it.
+to those same channels, so a channel can scale on compute.
 
 Today I run dozens of Claude Code sessions in [herdr](https://herdr.dev) on a
 Windows PC and Codex lanes on a Mac mini and VPS servers, across several Claude
