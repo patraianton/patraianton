@@ -33,20 +33,6 @@ Worth an engineer's first look:
 - subtrack ranks sessions by weighted tokens (`src/burn/read.ts`): an output
   token counts 5, a cache read 0.1.
 
-## How I work
-
-1. A Claude Code session turns the spec into one GitHub ticket that lists every
-   requirement next to an empty "proved by" column, and starts a lane on it.
-2. One Codex lane builds the whole sprint in its own copy of the repository,
-   proves every requirement, puts a screenshot of every screen next to its design
-   mock-up and opens one pull request with the "proved by" column filled in.
-3. A standing Amp thread, triggered by GitHub Actions, reviews it and returns GO
-   or NO-GO within 30 minutes. One fix round is allowed; after a second NO-GO the
-   Claude Code session decides. The pull request merges on green CI, and I spend
-   two minutes on the screenshots and the live site.
-4. I watch the fleet on sheepdog and subtrack.
-5. I measure the process and change it when the numbers say so.
-
 ## Contact
 
 I am in Riga, Latvia. Write to me on
