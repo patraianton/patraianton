@@ -27,44 +27,13 @@ the two weeks to 31 August 2026.
 
 The repositories below are the tools I wrote for that work. Four of them solve
 problems that appear only when one person runs many coding agents at once; the
-fifth, local-dictation, turns my speech into text. Measuring this setup on
-autopase.lv, a car-listings site for the Baltics that I co-founded, led to a
-shorter process: a large pull request used to go through 12 to 26 rounds of
-review, and each pull request measured on the shorter process took 1 to 3.
-
-## How measurements shortened the autopase.lv sprints
-
-autopase.lv ships in sprints built by coding agents. The partner writes each spec
-and accepts the finished sprint on a web page, item by item; my word is needed
-only on money, strategy and anything sent to outside parties. The first process
-was the delivery board in multi-lane-development: it handed tickets to eight
-Codex lanes and sent every pull request through rounds of checking against the
-spec, review and fixes, each round run by a fresh agent with no memory of the
-round before. The board's own measurements led to a shorter process on
-15 September 2026: one lane builds the whole sprint and proves every requirement
-itself, and one reviewer that keeps its memory from one pull request to the next
-checks the result.
-
-| Per pull request | Under the board | Under the shorter process |
-| --- | --- | --- |
-| Codex runs | up to 13 (65 with helper agents) | at most 3 on six of seven sprints; 14 on one sprint, where the lane wrote the page layout without being able to look at the page it built |
-| Review rounds | 12 to 26 on a large pull request | 1 to 3 |
-| Ticket to merge | 18 to 24 hours | 1 h 30 min to 6 h 50 min |
-
-The time to merge in the last column covers the six pull requests that did not
-wait overnight or in a queue. Three sprints took longer. On one, four pull
-requests queued for the one test copy of the site, and the last merged 10 h
-43 min after work started. On the other two, the session watching the lane had
-been closed overnight: one took 27 h 25 min to merge, the other 30 h 40 min to
-reach the live site. Seven sprints were merged in eight days, 15 to 22 September
-2026. The measurements are in `docs/PILOT.md` of multi-lane-development (in
-Russian).
+fifth, local-dictation, turns my speech into text.
 
 ## What I build
 
 | Repository | What it does | Stack, tests, status |
 | --- | --- | --- |
-| [multi-lane-development](https://github.com/patraianton/multi-lane-development) | A delivery board, one Node process, that ran the sprints of autopase.lv on eight Codex lanes across three machines until its own measurements replaced it with the shorter process above. A Claude Code session wrote the GitHub tickets from the spec; `bin/watchtower.mjs` handed each ticket to a free lane, had an agent that did not write the code check every pull request against the spec, reviewed the code, merged it when the automated checks passed and walked the live site afterwards. I was asked once per sprint, on one page. | Node 22 or newer, no dependencies, 264 tests. Paused since 15 September 2026. |
+| [multi-lane-development](https://github.com/patraianton/multi-lane-development) | A delivery board, one Node process, that ran sprints on eight Codex lanes across three machines until its own measurements replaced it with a shorter process. A Claude Code session wrote the GitHub tickets from the spec; `bin/watchtower.mjs` handed each ticket to a free lane, had an agent that did not write the code check every pull request against the spec, reviewed the code, merged it when the automated checks passed and walked the live site afterwards. I was asked once per sprint, on one page. | Node 22 or newer, no dependencies, 264 tests. Paused since 15 September 2026. |
 | [sheepdog](https://github.com/patraianton/sheepdog) | A local kanban board for one person who runs dozens of Claude Code and Codex sessions in herdr. It reads every session's state every 3 seconds, counts a session as busy only when a process, a counter or a timer proves it, and shows for each card whether the next step is on you. A second Claude Code session, the dispatcher, reads the whole board as one page of text and writes its decisions back through a command-line tool. | Plain Node, no dependencies. In daily use since August 2026. |
 | [teammate](https://github.com/patraianton/teammate) | A command-line tool that lets one Claude Code session hand a task to a second session in its own herdr tab and supervise it through a brief file, a status file of one-line updates and a close command that refuses to wipe uncommitted work. Each worker can get its own copy of the repository from a ready pool, so parallel workers never touch each other's files, and waiting on a worker costs the supervising session no AI tokens. | One Node file, no dependencies. |
 | [local-dictation](https://github.com/patraianton/local-dictation) | Push-to-talk dictation that runs entirely on a Windows PC, so a spoken order reaches the coding agent as it was said, not reworded. faster-whisper recognizes Russian speech full of English product names; a model already loaded in LM Studio restores punctuation and terms under a lock that rolls back every other change it makes. Every measured setting in `config.toml` carries the measurement that chose it in a comment. | Python 3.11 or newer, faster-whisper and LM Studio; 28 test scripts, 24 of them on faked hardware. In daily use since August 2026. |
@@ -98,13 +67,10 @@ conversation.
    30 minutes. The process allows one fix round; after a second NO-GO the Claude
    Code session decides what to do. The pull request merges when the automated
    checks pass, and I look at the screenshots and the live site for two minutes.
-   The partner accepts the sprint on a web page, item by item.
 4. I watch the fleet on a board. sheepdog reads every session's state from herdr
    every 3 seconds and tells me which card waits on me; subtrack shows how much
    of each subscription's limit is left and which session used it up.
-5. I measure the process and change it when the numbers say so. The table above
-   is the last such change; `docs/PILOT.md` in multi-lane-development holds the
-   measurements behind it.
+5. I measure the process and change it when the numbers say so.
 
 ## Contact
 
